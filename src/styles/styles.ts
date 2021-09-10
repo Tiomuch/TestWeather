@@ -20,11 +20,17 @@ export const gStyle = StyleSheet.create<Styles>({
         color: 'blue',
         marginTop: 20
     },
+    errorText: {
+      color: 'red',
+      textAlign: 'center',
+      fontSize: 40
+    },
     button: {
         borderWidth: 1,
         borderColor: 'grey',
         padding: 10,
         borderRadius: 5,
+        alignItems: 'center',
         backgroundColor: 'aqua'
     }
 })

@@ -1,7 +1,3 @@
-export const requestWeather = () => {
-    return { type: 'REQUESTED_WEATHER' }
-}
-
 type Weather = {
     id: number
     main: string
@@ -21,15 +17,23 @@ type ListObject = {
         eve: number
         morn: number
     }
+    feels_like: {
+        day: number
+        eve: number
+        morn: number
+        night: number
+    }
     pressure: number
     humidity: number
     weather: Weather[]
     speed: number
     deg: number
+    gust: number
+    pop: number
     clouds: number
 }
 
-type Data = {
+export type Data = {
     city: {
         id: number
         name: string
@@ -47,8 +51,12 @@ type Data = {
     list: ListObject[]
 }
 
-export const requestWeatherSuccess = (data: Data) => {
-    return { type: 'REQUESTED_WEATHER_SUCCEEDED', payload: data.list }
+export const requestWeather = () => {
+    return { type: 'REQUESTED_WEATHER' }
+}
+
+export const requestWeatherSuccess = (data: Data[]) => {
+    return { type: 'REQUESTED_WEATHER_SUCCEEDED', payload: data }
 }
 
 export const requestWeatherError = () => {

@@ -1,4 +1,4 @@
-import React, { useEffect} from 'react'
+import React, { useEffect, useState } from 'react'
 import {Text, View, TouchableOpacity} from 'react-native'
 import {gStyle} from '../styles/styles'
 import FirebaseUtil from '../utils/FirebaseUtil'
@@ -8,12 +8,14 @@ import { useActions } from '../hooks/useActions'
 import LoadingScreen from './LoadingScreen'
 
 export default function HomeScreen() {
+    const [reload, setReload] = useState<number>(0)
+
     const {weather, error, loading} = useTypedSelector(state => state)
     const {fetchWeather} = useActions()
 
     useEffect(() => {
         fetchWeather()
-    }, [])
+    }, [reload])
 
     const signOut = () => {
         FirebaseUtil.signOut().catch((e) => {
@@ -31,7 +33,13 @@ export default function HomeScreen() {
     if (error) {
         return (
             <View style={gStyle.container}>
-                <Text style={gStyle.text}>Something went wrong</Text>
+                <Text style={gStyle.errorText}>Something went wrong</Text>
+                <TouchableOpacity style={gStyle.button} onPress={() => setReload(reload + 1)}>
+                    <Text>Reload App</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={gStyle.button} onPress={() => signOut()}>
+                    <Text>Logout</Text>
+                </TouchableOpacity>
             </View>
         )
     }

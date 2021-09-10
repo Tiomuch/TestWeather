@@ -1,6 +1,7 @@
 import { call, put, takeEvery } from 'redux-saga/effects'
 import { requestWeather, requestWeatherError, requestWeatherSuccess } from '../actionCreators'
 import axios, {Method} from 'axios'
+import { Data } from '../actionCreators'
 
 type Options = {
     method: Method
@@ -17,60 +18,20 @@ type Options = {
     }
 }
 
-type Weather = {
-    id: number
-    main: string
-    description: string
-    icon: string
-}
+const cities: string[] = ['sumy,ua', 'lviv,ua', 'odesa,ua']
 
-type ListObject = {
-    dt: number
-    sunrise: number
-    sunset: number
-    temp: {
-        day: number
-        min: number
-        max: number
-        night: number
-        eve: number
-        morn: number
-    }
-    pressure: number
-    humidity: number
-    weather: Weather[]
-    speed: number
-    deg: number
-    clouds: number
-}
-
-type Data = {
-    city: {
-        id: number
-        name: string
-        coord?: {
-            lon: number
-            lat: number
+const makeOptions = (city: string) => {
+    const options: Options = {
+        method: 'GET',
+        url: 'https://community-open-weather-map.p.rapidapi.com/forecast/daily',
+        params: {q: city, cnt: '5', units: 'metric or imperial'},
+        headers: {
+            'content-type': 'application/json; charset=utf-8',
+            'x-rapidapi-host': 'community-open-weather-map.p.rapidapi.com',
+            'x-rapidapi-key': '894f59d50dmshaa7260d160a5535p1318c2jsn424fc22be376'
         }
-        country: string
-        population: number
-        timezone: number
     }
-    cod: string
-    message: number
-    cnt: number
-    list: ListObject[]
-}
-
-const options: Options = {
-    method: 'GET',
-    url: 'https://community-open-weather-map.p.rapidapi.com/forecast/daily',
-    params: {q: 'sumy,ua', cnt: '5', units: 'metric or imperial'},
-    headers: {
-        'content-type': 'application/json; charset=utf-8',
-        'x-rapidapi-host': 'community-open-weather-map.p.rapidapi.com',
-        'x-rapidapi-key': '894f59d50dmshaa7260d160a5535p1318c2jsn424fc22be376'
-    }
+    return options
 }
 
 function* mySaga() {
@@ -79,14 +40,24 @@ function* mySaga() {
 
 function* fetchWeatherAsync() {
     try {
-        yield put(requestWeather());
-        const data: Data = yield call(() => {
-            return axios.request(options).then((res) => {return res.data})
+        yield put(requestWeather())
+
+        const data1: Data = yield call(() => {
+            return axios.request(makeOptions(cities[0])).then((res) => {return res.data})
             }
         )
+        const data2: Data = yield call(() => {
+                return axios.request(makeOptions(cities[1])).then((res) => {return res.data})
+            }
+        )
+        const data3: Data = yield call(() => {
+                return axios.request(makeOptions(cities[2])).then((res) => {return res.data})
+            }
+        )
+
+        const data: Data[] = [data1, data2, data3]
         yield put(requestWeatherSuccess(data))
     } catch (error) {
-        console.log(error)
         yield put(requestWeatherError())
     }
 }
