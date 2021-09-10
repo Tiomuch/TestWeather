@@ -55,7 +55,7 @@ export default function HomeScreen() {
                     keyExtractor={(item) => item.city.id.toString()}
                     horizontal
                     pagingEnabled
-                    renderItem={({item}) => <CityPage />}
+                    renderItem={({item}) => <CityPage item={item} />}
                 />
             </View>
             <TouchableOpacity style={gStyle.logoutButton} onPress={() => signOut()}>

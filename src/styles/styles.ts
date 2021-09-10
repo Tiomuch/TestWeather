@@ -45,12 +45,15 @@ export const gStyle = StyleSheet.create<Styles>({
     },
     image: {
         flex: 1,
-        width: width * 0.9,
+        width: width * 0.89,
         height: '100%'
     },
     details: {
         flex: 1,
         /*width: '100%',*/
         height: '100%'
+    },
+    city: {
+        marginRight: 6
     }
 })
