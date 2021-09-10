@@ -1,4 +1,6 @@
-import { StyleSheet } from 'react-native'
+import { StyleSheet, Dimensions } from 'react-native'
+
+const { width } = Dimensions.get('screen')
 
 export const gStyle = StyleSheet.create<Styles>({
     main: {
@@ -32,5 +34,23 @@ export const gStyle = StyleSheet.create<Styles>({
         borderRadius: 5,
         alignItems: 'center',
         backgroundColor: 'aqua'
+    },
+    logoutButton: {
+        borderWidth: 1,
+        borderColor: 'grey',
+        padding: 10,
+        borderRadius: 5,
+        alignItems: 'center',
+        backgroundColor: '#FF6666'
+    },
+    image: {
+        flex: 1,
+        width: width * 0.9,
+        height: '100%'
+    },
+    details: {
+        flex: 1,
+        /*width: '100%',*/
+        height: '100%'
     }
 })
