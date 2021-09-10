@@ -1,7 +1,47 @@
-interface WeatherState {
-    weather: any[]
+type Weather = {
+    id: number
+    main: string
+    description: string
+    icon: string
+}
+
+type ListObject = {
+    dt: number
+    sunrise: number
+    sunset: number
+    temp: {
+        day: number
+        min: number
+        max: number
+        night: number
+        eve: number
+        morn: number
+    }
+    feels_like: {
+        day: number
+        eve: number
+        morn: number
+        night: number
+    }
+    pressure: number
+    humidity: number
+    weather: Weather[]
+    speed: number
+    deg: number
+    gust: number
+    pop: number
+    clouds: number
+}
+
+type WeatherState = {
+    weather: ListObject[]
     loading: boolean
     error: boolean
+}
+
+type Action = {
+    type: string
+    payload: ListObject[]
 }
 
 const initialState: WeatherState = {
@@ -10,7 +50,7 @@ const initialState: WeatherState = {
     error: false
 }
 
-export default function weather(state = initialState, action: { type: any; payload: any }): WeatherState {
+export default function weather(state = initialState, action: Action) {
     switch (action.type){
         case 'REQUESTED_WEATHER':
             return {
@@ -34,3 +74,5 @@ export default function weather(state = initialState, action: { type: any; paylo
             return state
     }
 }
+
+export type RootState = ReturnType<typeof weather>

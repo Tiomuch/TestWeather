@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
-import { SafeAreaView, StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native'
+import { Text, View, TextInput, TouchableOpacity } from 'react-native'
 import { gStyle } from '../styles/styles'
 import FirebaseUtil from '../utils/FirebaseUtil'
 
 export default function LoginScreen() {
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
-    const [create, setCreate] = useState(false)
+    const [email, setEmail] = useState<string>('')
+    const [password, setPassword] = useState<string>('')
+    const [repeatPassword, setRepeatPassword] = useState<string>('')
+    const [create, setCreate] = useState<boolean>(false)
 
     const signIn = () => {
         if (email === '' || password === '') {
@@ -20,8 +21,10 @@ export default function LoginScreen() {
     }
 
     const signUp = () => {
-        if (email === '' || password === '') {
+        if (email === '' || password === '' || repeatPassword === '') {
             alert('Email/password is wrong')
+        } else if (password !== repeatPassword) {
+            alert('Passwords are different')
         } else {
             FirebaseUtil.signUp(email, password).catch((e) => {
                 console.log(e)
@@ -45,6 +48,12 @@ export default function LoginScreen() {
                 secureTextEntry={true} />
             { create ? (
                 <>
+                    <TextInput
+                        placeholder="Repeat Password"
+                        onChangeText={setRepeatPassword}
+                        value={repeatPassword}
+                        style={gStyle.textInput}
+                        secureTextEntry={true} />
                     <TouchableOpacity onPress={() => signUp()} style={gStyle.button}>
                         <Text>Sign up</Text>
                     </TouchableOpacity>

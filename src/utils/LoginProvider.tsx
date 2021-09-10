@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import auth, { FirebaseAuthTypes } from '@react-native-firebase/auth'
 
-interface ContextType {
+type ContextType = {
     user: FirebaseAuthTypes.User | null
     isLoading: boolean
 }
 
 export const LoginContext = React.createContext({} as ContextType)
 
-interface Props {
+type Props = {
     children: React.ReactNode
 }
 
