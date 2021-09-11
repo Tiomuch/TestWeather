@@ -6,7 +6,7 @@ import { fetchWeather } from '../store/actionCreators'
 import { useTypedSelector } from '../hooks/useTypedSelector'
 import { useActions } from '../hooks/useActions'
 import LoadingScreen from './LoadingScreen'
-import { CityPage } from '../components/CityPage' //weather[0].list[0].weather[0].icon
+import { CityPage } from '../components/CityPage'
 
 export default function HomeScreen() {
     const [reload, setReload] = useState<number>(0)
@@ -55,6 +55,7 @@ export default function HomeScreen() {
                     keyExtractor={(item) => item.city.id.toString()}
                     horizontal
                     pagingEnabled
+                    showsHorizontalScrollIndicator={false}
                     renderItem={({item}) => <CityPage item={item} />}
                 />
             </View>

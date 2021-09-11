@@ -81,10 +81,25 @@ export const gStyle = StyleSheet.create<Styles>({
     dayOfWeek: {
         flex: 1,
         flexDirection: 'row',
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
+        marginTop: 10,
+        marginLeft: 5,
+        marginRight: 5
     },
     image: {
         width: 40,
         height: 40
+    },
+    dayText: {
+        fontSize: 20
+    },
+    weekButton: {
+        borderWidth: 1,
+        borderColor: 'grey',
+        padding: 10,
+        borderRadius: 5,
+        alignItems: 'center',
+        backgroundColor: 'aqua',
+        marginBottom: 10
     }
 })

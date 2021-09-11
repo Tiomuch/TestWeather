@@ -5,7 +5,7 @@ type Weather = {
     icon: string
 }
 
-type ListObject = {
+export type ListObject = {
     dt: number
     sunrise: number
     sunset: number

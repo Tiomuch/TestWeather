@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react'
-import { View, ImageBackground, Text, Image } from 'react-native'
+import {View, ImageBackground, Text, Image, FlatList, TouchableOpacity} from 'react-native'
 import { gStyle } from '../styles/styles'
-import { Data } from '../store/actionCreators'
-import {getDayOfWeek, getTemp} from "./GetInfo";
+import { Data, ListObject } from '../store/actionCreators'
+import {getTemp} from './GetInfo'
+import {OneDay} from './OneDay'
 
 type CityPageProps = {
     item: Data
@@ -33,12 +34,12 @@ export const CityPage: React.FC<CityPageProps> = ({ item }) => {
         }
     }, [])
 
-    const imageUri = { uri: image }
+    const showDayArray: ListObject[] = item.list.slice(0, 4)
 
     return (
         <View style={gStyle.city}>
             <View style={gStyle.details}>
-                <ImageBackground source={imageUri} resizeMode="cover" style={gStyle.backImage}>
+                <ImageBackground source={{uri: image}} resizeMode="cover" style={gStyle.backImage}>
                     <Text style={gStyle.title}>{item.city.name}</Text>
                     <Text style={gStyle.temp}>{getTemp(item.list[0].temp.min)}/{getTemp(item.list[0].temp.max)}{' \u2103'}</Text>
                     <Image source={{uri: `http://openweathermap.org/img/w/${item.list[0].weather[0].icon}.png`}} style={gStyle.icon} />
@@ -47,11 +48,10 @@ export const CityPage: React.FC<CityPageProps> = ({ item }) => {
                 </ImageBackground>
             </View>
             <View style={gStyle.details}>
-                <View style={gStyle.dayOfWeek}>
-                    <Text>{getDayOfWeek(item.list[0].dt)}</Text>
-                    <Image source={{uri: `http://openweathermap.org/img/w/${item.list[0].weather[0].icon}.png`}} style={gStyle.image} />
-                    <Text>{getTemp(item.list[0].temp.day)}{' \u2103'}</Text>
-                </View>
+                { showDayArray.map((day) =>  <OneDay key={day.dt.toString()} day={day} />) }
+                <TouchableOpacity style={gStyle.weekButton}>
+                    <Text>Weather for two weeks</Text>
+                </TouchableOpacity>
             </View>
         </View>
     )
