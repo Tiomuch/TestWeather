@@ -43,17 +43,48 @@ export const gStyle = StyleSheet.create<Styles>({
         alignItems: 'center',
         backgroundColor: '#FF6666'
     },
-    image: {
+    backImage: {
         flex: 1,
         width: width * 0.89,
         height: '100%'
     },
     details: {
         flex: 1,
-        /*width: '100%',*/
         height: '100%'
     },
     city: {
         marginRight: 6
+    },
+    icon: {
+        width: 80,
+        height: 80,
+        marginTop: 10,
+        marginLeft: 10
+    },
+    title: {
+        color: '#F7F21A',
+        fontSize: 40,
+        textAlign: 'center'
+    },
+    temp: {
+        color: '#F7F21A',
+        fontSize: 35,
+        marginTop: 10,
+        marginLeft: 10
+    },
+    weather: {
+        color: '#F7F21A',
+        fontSize: 35,
+        marginTop: 10,
+        marginLeft: 10
+    },
+    dayOfWeek: {
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'space-between'
+    },
+    image: {
+        width: 40,
+        height: 40
     }
 })

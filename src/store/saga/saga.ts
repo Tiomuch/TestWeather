@@ -24,7 +24,7 @@ const makeOptions = (city: string) => {
     const options: Options = {
         method: 'GET',
         url: 'https://community-open-weather-map.p.rapidapi.com/forecast/daily',
-        params: {q: city, cnt: '5', units: 'metric or imperial'},
+        params: {q: city, cnt: '14', units: 'metric or imperial'},
         headers: {
             'content-type': 'application/json; charset=utf-8',
             'x-rapidapi-host': 'community-open-weather-map.p.rapidapi.com',

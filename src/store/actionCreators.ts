@@ -41,7 +41,6 @@ export type Data = {
             lon: number
             lat: number
         }
-        image?: string
         country: string
         population: number
         timezone: number
