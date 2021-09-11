@@ -7,9 +7,11 @@ import {OneDay} from './OneDay'
 
 type CityPageProps = {
     item: Data
+    onPress: (num:number)=>void
+    index: number
 }
 
-export const CityPage: React.FC<CityPageProps> = ({ item }) => {
+export const CityPage: React.FC<CityPageProps> = ({ item, onPress, index }) => {
     const [image, setImage] = useState<string>('https://ichef.bbci.co.uk/news/640/cpsprodpb/10508/production/_104642866_d6bc46c1-f7a6-4b7e-968a-e4007759dfe5.jpg')
 
     const images: string[] = [
@@ -49,7 +51,7 @@ export const CityPage: React.FC<CityPageProps> = ({ item }) => {
             </View>
             <View style={gStyle.details}>
                 { showDayArray.map((day) =>  <OneDay key={day.dt.toString()} day={day} />) }
-                <TouchableOpacity style={gStyle.weekButton}>
+                <TouchableOpacity style={gStyle.weekButton} onPress={() => onPress(index + 1)}>
                     <Text>Weather for two weeks</Text>
                 </TouchableOpacity>
             </View>

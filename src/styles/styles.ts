@@ -84,7 +84,8 @@ export const gStyle = StyleSheet.create<Styles>({
         justifyContent: 'space-between',
         marginTop: 10,
         marginLeft: 5,
-        marginRight: 5
+        marginRight: 5,
+        marginBottom: 10
     },
     image: {
         width: 40,
@@ -101,5 +102,15 @@ export const gStyle = StyleSheet.create<Styles>({
         alignItems: 'center',
         backgroundColor: 'aqua',
         marginBottom: 10
+    },
+    dayOfList: {
+        justifyContent: 'space-between',
+        marginTop: 10,
+        marginLeft: 5,
+        marginRight: 5,
+        marginBottom: 5,
+        borderWidth: 1,
+        borderColor: 'grey',
+        borderRadius: 5
     }
 })
