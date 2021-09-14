@@ -4,7 +4,7 @@ import { SafeAreaView, StyleSheet } from 'react-native'
 import { Login } from './src/utils'
 import {AppStack} from './src/navigation'
 import { Provider } from 'react-redux'
-import { store } from './src/store'
+import { store } from './src/store/weather/myStore'
 
 const App: () => Node = () => {
   return (

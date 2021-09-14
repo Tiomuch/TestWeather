@@ -29,5 +29,10 @@ export const gStyle = StyleSheet.create<Styles>({
         borderRadius: 5,
         alignItems: 'center',
         backgroundColor: '#FF6666'
+    },
+    title: {
+        color: '#F7F21A',
+        fontSize: 40,
+        textAlign: 'center'
     }
 })

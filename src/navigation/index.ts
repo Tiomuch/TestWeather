@@ -1,3 +1,1 @@
-import AppStack from './AppStack'
-
-export {AppStack}
+export * from './AppStack'

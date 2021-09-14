@@ -58,12 +58,6 @@ export type WeatherState = {
 }
 
 export type Action = {
-    type: string
     payload: Data[]
-}
-
-export const initialState: WeatherState = {
-    weather: [],
-    loading: false,
-    error: false
+    type: ''
 }

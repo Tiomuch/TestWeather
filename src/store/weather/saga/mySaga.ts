@@ -1,5 +1,5 @@
 import { call, put, takeEvery } from 'redux-saga/effects'
-import { requestWeatherSuccess, requestWeather, requestWeatherError } from '../../../store'
+import { requestedWeatherFailed, requestedWeatherSucceeded, requestedWeather } from '../../index'
 import axios from 'axios'
 import { Data, Options } from './type'
 
@@ -19,14 +19,12 @@ const makeOptions = (city: string) => {
     return options
 }
 
-function* mySaga() {
-    yield takeEvery('FETCHED_WEATHER', fetchWeatherAsync)
+function* watcherSaga() {
+    yield takeEvery(requestedWeather, workerSaga)
 }
 
-function* fetchWeatherAsync() {
+function* workerSaga() {
     try {
-        yield put(requestWeather())
-
         const data1: Data = yield call(() => {
                 return axios.request(makeOptions(cities[0])).then((res) => {return res.data})
             }
@@ -41,10 +39,10 @@ function* fetchWeatherAsync() {
         )
 
         const data: Data[] = [data1, data2, data3]
-        yield put(requestWeatherSuccess(data))
+        yield put(requestedWeatherSucceeded(data))
     } catch (error) {
-        yield put(requestWeatherError())
+        yield put(requestedWeatherFailed())
     }
 }
 
-export default mySaga
+export default watcherSaga

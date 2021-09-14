@@ -1,13 +1,13 @@
 import { createStore, applyMiddleware } from 'redux'
-import { weather } from '../reducers'
+import { weatherReducer } from '../reducers'
 import createSagaMiddleware from 'redux-saga'
-import { mySaga } from '../saga'
+import rootSaga from '../../rootSaga'
 import 'regenerator-runtime/runtime'
 
 const sagaMiddleware = createSagaMiddleware()
 
-const store = createStore(weather, applyMiddleware(sagaMiddleware))
+const store = createStore(weatherReducer, applyMiddleware(sagaMiddleware))
 
-sagaMiddleware.run(mySaga)
+sagaMiddleware.run(rootSaga)
 
 export default store
