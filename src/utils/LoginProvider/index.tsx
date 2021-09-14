@@ -1,18 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import auth, { FirebaseAuthTypes } from '@react-native-firebase/auth'
+import { ContextType, Props } from './type'
 
-type ContextType = {
-    user: FirebaseAuthTypes.User | null
-    isLoading: boolean
-}
+const LoginContext = React.createContext({} as ContextType)
 
-export const LoginContext = React.createContext({} as ContextType)
-
-type Props = {
-    children: React.ReactNode
-}
-
-export default function LoginProvider(props: Props) {
+function LoginProvider(props: Props) {
     const [user, setUser] = useState<FirebaseAuthTypes.User | null>(null)
     const [isLoading, setIsLoading] = useState<boolean>(true)
 
@@ -32,3 +24,5 @@ export default function LoginProvider(props: Props) {
         </LoginContext.Provider>
     )
 }
+
+export default {LoginProvider, LoginContext}

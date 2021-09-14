@@ -1,19 +1,15 @@
-import {ListObject} from '../store/actionCreators'
+import {DayProps} from './type'
 import React from 'react'
 import {Image, Text, View} from 'react-native'
-import {gStyle} from '../styles/styles'
-import {getDayOfWeek, getTemp, getDate} from './GetInfo'
-
-type DayProps = {
-    day: ListObject
-}
+import {gStyle} from './style'
+import {GetInfo} from '../index'
 
 export const DayOfList: React.FC<DayProps> = ({day}) => {
     return (
         <View style={gStyle.dayOfList}>
             <View style={gStyle.dayOfWeek}>
-                <Text style={gStyle.dayText}>{getDayOfWeek(day.dt)}</Text>
-                <Text style={gStyle.dayText}>{getDate(day.dt)}</Text>
+                <Text style={gStyle.dayText}>{GetInfo.getDayOfWeek(day.dt)}</Text>
+                <Text style={gStyle.dayText}>{GetInfo.getDate(day.dt)}</Text>
             </View>
             <View style={gStyle.dayOfWeek}>
                 <Text style={gStyle.dayText}>{day.weather[0].main}</Text>
@@ -21,7 +17,7 @@ export const DayOfList: React.FC<DayProps> = ({day}) => {
             </View>
             <View style={gStyle.dayOfWeek}>
                 <Text style={gStyle.dayText}>Temp</Text>
-                <Text style={gStyle.dayText}>{getTemp(day.temp.min)}/{getTemp(day.temp.max)}{' \u2103'}</Text>
+                <Text style={gStyle.dayText}>{GetInfo.getTemp(day.temp.min)}/{GetInfo.getTemp(day.temp.max)}{' \u2103'}</Text>
             </View>
         </View>
     )

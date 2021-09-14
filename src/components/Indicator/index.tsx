@@ -1,14 +1,9 @@
 import React from 'react'
 import {View, Animated, Dimensions} from 'react-native'
-import {Data} from '../store/actionCreators'
-import {gStyle} from '../styles/styles'
+import {ScrollX} from './type'
+import {gStyle} from './style'
 
 const { width } = Dimensions.get('screen')
-
-type ScrollX = {
-    scrollX: Animated.Value
-    weather: Data[]
-}
 
 export const Indicator: React.FC<ScrollX> = ({scrollX, weather}) => {
     return (

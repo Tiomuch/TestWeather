@@ -1,6 +1,6 @@
 import React from 'react'
 import { View, ActivityIndicator } from 'react-native'
-import { gStyle } from '../styles/styles'
+import { gStyle } from './style'
 
 export default function LoadingScreen() {
     return (

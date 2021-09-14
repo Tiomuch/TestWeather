@@ -1,21 +1,4 @@
-import { Data } from '../actionCreators'
-
-type WeatherState = {
-    weather: Data[]
-    loading: boolean
-    error: boolean
-}
-
-type Action = {
-    type: string
-    payload: Data[]
-}
-
-const initialState: WeatherState = {
-    weather: [],
-    loading: false,
-    error: false
-}
+import { initialState, Action } from './type'
 
 export default function weather(state = initialState, action: Action) {
     switch (action.type){

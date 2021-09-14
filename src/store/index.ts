@@ -1,13 +1,8 @@
-import { createStore, applyMiddleware } from 'redux'
-import weather from './reducers/weather'
-import createSagaMiddleware from 'redux-saga'
-import mySaga from './saga/saga'
-import 'regenerator-runtime/runtime'
+import store from './myStore'
+import { fetchWeather, requestWeatherSuccess, requestWeatherError, requestWeather } from './actionCreators'
+import { mySaga } from './saga'
+import { weather, RootState } from './reducers'
 
-const sagaMiddleware = createSagaMiddleware()
+export { store, fetchWeather, requestWeatherError, requestWeatherSuccess, requestWeather, mySaga, weather }
 
-const store = createStore(weather, applyMiddleware(sagaMiddleware))
-
-sagaMiddleware.run(mySaga)
-
-export default store
+export type { RootState }

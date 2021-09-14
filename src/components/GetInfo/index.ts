@@ -7,14 +7,10 @@ const getDate = (time: number): string => {
     return (maxDate.getDate() + '.' + month)
 }
 
-export {getDate}
-
 const getTime = (time: number): string => {
     const maxDate = new Date(time * 1000)
     return (maxDate.getHours() + ':' + maxDate.getMinutes())
 }
-
-export {getTime}
 
 const getDayOfWeek = (time: number): string => {
     const date = new Date(time * 1000)
@@ -47,10 +43,8 @@ const getDayOfWeek = (time: number): string => {
     return result
 }
 
-export {getDayOfWeek}
-
 const getTemp = (temp: number): number => {
     return Math.round(temp - 273.15)
 }
 
-export {getTemp}
+export default {getTemp, getDate, getTime, getDayOfWeek}

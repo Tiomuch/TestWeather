@@ -1,22 +1,7 @@
 import { call, put, takeEvery } from 'redux-saga/effects'
-import { requestWeather, requestWeatherError, requestWeatherSuccess } from '../actionCreators'
-import axios, {Method} from 'axios'
-import { Data } from '../actionCreators'
-
-type Options = {
-    method: Method
-    url: string
-    params: {
-        q: string
-        cnt: string
-        units: string
-    }
-    headers: {
-        'content-type': string
-        'x-rapidapi-host': string
-        'x-rapidapi-key': string
-    }
-}
+import { requestWeatherSuccess, requestWeather, requestWeatherError } from '../../../store'
+import axios from 'axios'
+import { Data, Options } from './type'
 
 const cities: string[] = ['sumy,ua', 'lviv,ua', 'odesa,ua']
 
@@ -43,7 +28,7 @@ function* fetchWeatherAsync() {
         yield put(requestWeather())
 
         const data1: Data = yield call(() => {
-            return axios.request(makeOptions(cities[0])).then((res) => {return res.data})
+                return axios.request(makeOptions(cities[0])).then((res) => {return res.data})
             }
         )
         const data2: Data = yield call(() => {

@@ -50,19 +50,3 @@ export type Data = {
     cnt: number
     list: ListObject[]
 }
-
-export const requestWeather = () => {
-    return { type: 'REQUESTED_WEATHER' }
-}
-
-export const requestWeatherSuccess = (data: Data[]) => {
-    return { type: 'REQUESTED_WEATHER_SUCCEEDED', payload: data }
-}
-
-export const requestWeatherError = () => {
-    return { type: 'REQUESTED_WEATHER_FAILED' }
-}
-
-export const fetchWeather = () => {
-    return { type: 'FETCHED_WEATHER' }
-}

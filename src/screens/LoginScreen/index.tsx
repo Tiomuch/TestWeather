@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Text, View, TextInput, TouchableOpacity } from 'react-native'
-import { gStyle } from '../styles/styles'
-import FirebaseUtil from '../utils/FirebaseUtil'
+import { gStyle } from './style'
+import { FirebaseUtil } from '../../utils'
 
 export default function LoginScreen() {
     const [email, setEmail] = useState<string>('')

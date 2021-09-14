@@ -1,15 +1,13 @@
 import React, { useContext } from 'react'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { NavigationContainer } from '@react-navigation/native'
-import { LoginContext } from '../utils/LoginProvider'
-import LoadingScreen from '../screens/LoadingScreen'
-import LoginScreen from '../screens/LoginScreen'
-import HomeScreen from '../screens/HomeScreen'
+import { Login } from '../../utils'
+import { LoadingScreen, LoginScreen, HomeScreen } from '../../screens'
 
 const Stack = createNativeStackNavigator()
 
 export default function AppStack() {
-    const {user, isLoading} = useContext(LoginContext)
+    const {user, isLoading} = useContext(Login.LoginContext)
 
     return (
         <NavigationContainer>
