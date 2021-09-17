@@ -10,7 +10,7 @@ export default function LoginScreen() {
     const [create, setCreate] = useState<boolean>(false)
 
     const signIn = () => {
-        if (email === '' || password === '') {
+        if (!email || !password) {
             alert('Email/password is wrong')
         } else {
             FirebaseUtil.signIn(email, password).catch((e) => {
@@ -21,7 +21,7 @@ export default function LoginScreen() {
     }
 
     const signUp = () => {
-        if (email === '' || password === '' || repeatPassword === '') {
+        if (!email || !password || !repeatPassword) {
             alert('Email/password is wrong')
         } else if (password !== repeatPassword) {
             alert('Passwords are different')
@@ -54,14 +54,14 @@ export default function LoginScreen() {
                         value={repeatPassword}
                         style={gStyle.textInput}
                         secureTextEntry={true} />
-                    <TouchableOpacity onPress={() => signUp()} style={gStyle.button}>
+                    <TouchableOpacity onPress={signUp} style={gStyle.button}>
                         <Text>Sign up</Text>
                     </TouchableOpacity>
                     <Text style={gStyle.text} onPress={() => setCreate(false)}>Sign in</Text>
                 </>
             ) : (
                 <>
-                    <TouchableOpacity onPress={() => signIn()} style={gStyle.button}>
+                    <TouchableOpacity onPress={signIn} style={gStyle.button}>
                         <Text>Sign in</Text>
                     </TouchableOpacity>
                     <Text style={gStyle.text} onPress={() => setCreate(true)}>Create an Account</Text>

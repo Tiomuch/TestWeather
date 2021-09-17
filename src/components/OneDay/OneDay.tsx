@@ -2,7 +2,7 @@ import {DayProps} from './type'
 import React from 'react'
 import {Image, Text, View} from 'react-native'
 import {gStyle} from './style'
-import {GetInfo} from '../index'
+import {GetInfo} from '../../utils'
 
 export const OneDay: React.FC<DayProps> = ({day}) => {
     return (

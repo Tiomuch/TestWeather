@@ -1,10 +1,10 @@
 import React from 'react'
 import type {Node} from 'react'
 import { SafeAreaView, StyleSheet } from 'react-native'
-import { Login } from './src/utils'
-import {AppStack} from './src/navigation'
+import { Login } from './src/contexts'
+import { AppStack } from './src/navigation'
 import { Provider } from 'react-redux'
-import { store } from './src/store/weather/myStore'
+import store from './src/store/rootStore'
 
 const App: () => Node = () => {
   return (

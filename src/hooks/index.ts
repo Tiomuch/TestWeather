@@ -1,2 +1,2 @@
-export * from './useActions'
-export * from './useTypedSelector'
+export * from './useActions/useActions'
+export * from './useTypedSelector/useTypedSelector'

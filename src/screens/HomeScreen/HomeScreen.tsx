@@ -21,7 +21,6 @@ export default function HomeScreen() {
     }, [reload])
 
     const signOut = () => {
-        console.log(weather)
         FirebaseUtil.signOut().catch((e) => {
             console.log(e)
             alert('Something went wrong')
@@ -37,7 +36,7 @@ export default function HomeScreen() {
                             <Text>Reload App</Text>
                         </TouchableOpacity>
                     </View>
-                    <TouchableOpacity style={gStyle.logoutButton} onPress={() => signOut()}>
+                    <TouchableOpacity style={gStyle.logoutButton} onPress={signOut}>
                         <Text>Logout</Text>
                     </TouchableOpacity>
                 </View>
@@ -60,7 +59,7 @@ export default function HomeScreen() {
                                 />
                             </View>
                             <Indicator scrollX={scrollX} weather={weather} />
-                            <TouchableOpacity style={gStyle.logoutButton} onPress={() => signOut()}>
+                            <TouchableOpacity style={gStyle.logoutButton} onPress={signOut}>
                                 <Text>Logout</Text>
                             </TouchableOpacity>
                         </>

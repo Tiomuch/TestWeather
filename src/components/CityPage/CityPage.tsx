@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react'
 import {View, ImageBackground, Text, Image, TouchableOpacity} from 'react-native'
 import { gStyle } from './style'
 import { CityPageProps } from './type'
-import { GetInfo, OneDay } from '../index'
+import { GetInfo } from '../../utils'
+import { OneDay } from '../index'
 
 export const CityPage: React.FC<CityPageProps> = ({ item, onPress, index }) => {
     const [image, setImage] = useState<string>('https://ichef.bbci.co.uk/news/640/cpsprodpb/10508/production/_104642866_d6bc46c1-f7a6-4b7e-968a-e4007759dfe5.jpg')
@@ -27,7 +28,7 @@ export const CityPage: React.FC<CityPageProps> = ({ item, onPress, index }) => {
             default:
                 break
         }
-    }, [])
+    }, [item.city.name])
 
     return (
         <View style={gStyle.city}>

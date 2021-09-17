@@ -11,19 +11,24 @@ const initialState: WeatherState = {
 export const weatherReducer = createReducer(initialState, (builder) => {
     builder
         .addCase(requestedWeather, (state) => {
-            state.weather = []
-            state.loading = true
-            state.error = false
+            return {
+                ...state,
+                loading: true
+            }
         })
         .addCase(requestedWeatherSucceeded, (state, action) => {
-            state.weather = action.payload
-            state.error = false
-            state.loading = false
+            return {
+                ...state,
+                weather: action.payload,
+                loading: false
+            }
         })
         .addCase(requestedWeatherFailed, (state) => {
-            state.weather = []
-            state.loading = false
-            state.error = true
+            return {
+                ...state,
+                loading: false,
+                error: true
+            }
         })
 })
 

@@ -1,7 +1,7 @@
 import { createStore, applyMiddleware } from 'redux'
-import { weatherReducer } from '../reducers'
+import { weatherReducer } from './weather/reducers'
 import createSagaMiddleware from 'redux-saga'
-import rootSaga from '../../rootSaga'
+import rootSaga from './rootSaga'
 import 'regenerator-runtime/runtime'
 
 const sagaMiddleware = createSagaMiddleware()
