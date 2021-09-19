@@ -57,7 +57,7 @@ export default function LoginScreen() {
                     <StyledButton onPress={signUp}>
                         <Text>Sign up</Text>
                     </StyledButton>
-                    <StyledButton onPress={() => setCreate(false)}>Sign in</StyledButton>
+                    <StyledText onPress={() => setCreate(false)}>Sign in</StyledText>
                 </>
             ) : (
                 <>
