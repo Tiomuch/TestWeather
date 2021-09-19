@@ -1,19 +1,17 @@
 import React, { useEffect, useState, useRef } from 'react'
 import {
     Text,
-    View,
-    TouchableOpacity,
     FlatList,
     SectionList,
     Animated,
     Dimensions,
     ActivityIndicator
 } from 'react-native'
-import {gStyle} from './style'
 import { FirebaseUtil } from '../../utils'
 import { requestedWeather } from '../../store'
 import { useActions, useTypedSelector } from '../../hooks'
 import { CityPage, DayOfList, Indicator } from '../../components'
+import { Container, Main, StyledButton, Title, LogoutButton, ErrorText, gStyle } from './style'
 
 export default function HomeScreen() {
     const scrollX = useRef(new Animated.Value(0)).current
@@ -36,19 +34,19 @@ export default function HomeScreen() {
     }
 
     return (
-        <View style={gStyle.container}>
+        <Container>
             { error ? (
-                    <View style={gStyle.main}>
-                        <Text style={gStyle.errorText}>Something went wrong</Text>
-                        <TouchableOpacity style={gStyle.button} onPress={() => setReload(reload + 1)}>
+                    <Main>
+                        <ErrorText>Something went wrong</ErrorText>
+                        <StyledButton onPress={() => setReload(reload + 1)}>
                             <Text>Reload App</Text>
-                        </TouchableOpacity>
-                    </View>
+                        </StyledButton>
+                    </Main>
             ) : (
                 <>
                     { loading ? <ActivityIndicator style={gStyle.main} color="#000" size="large" /> :
                         twoWeeksIdentificator === 0 ? (
-                            <View style={gStyle.main}>
+                            <Main>
                                 <FlatList
                                     data={weather}
                                     keyExtractor={(item) => item.city.id.toString()}
@@ -59,14 +57,17 @@ export default function HomeScreen() {
                                         {useNativeDriver: false}
                                     )}
                                     showsHorizontalScrollIndicator={false}
-                                    renderItem={({item, index}) => <CityPage item={item} index={index}
-                                                                             onPress={(num) => setTwoWeeksIdentificator(num)}/>}
+                                    renderItem={({item, index}) => <CityPage
+                                        item={item}
+                                        index={index}
+                                        onPress={(num) => setTwoWeeksIdentificator(num)}
+                                    />}
                                 />
                                 <Indicator scrollX={scrollX} weather={weather}/>
-                            </View>
+                            </Main>
                         ) : (
                             <>
-                                <View style={gStyle.main}>
+                                <Main>
                                     <SectionList
                                         keyExtractor={(item) => item.dt.toString()}
                                         showsVerticalScrollIndicator={false}
@@ -82,22 +83,21 @@ export default function HomeScreen() {
                                         ]}
                                         renderItem={({item}) => <DayOfList day={item}/>}
                                         renderSectionHeader={({section}) => (
-                                            <Text style={gStyle.title}>{section.title}</Text>
+                                            <Title>{section.title}</Title>
                                         )}
                                     />
-                                </View>
-                                <TouchableOpacity style={gStyle.logoutButton}
-                                                  onPress={() => setTwoWeeksIdentificator(0)}>
+                                </Main>
+                                <LogoutButton onPress={() => setTwoWeeksIdentificator(0)}>
                                     <Text>Back</Text>
-                                </TouchableOpacity>
+                                </LogoutButton>
                             </>
                         )
                     }
                 </>
             )}
-            <TouchableOpacity style={gStyle.logoutButton} onPress={signOut}>
+            <LogoutButton onPress={signOut}>
                 <Text>Logout</Text>
-            </TouchableOpacity>
-        </View>
+            </LogoutButton>
+        </Container>
     )
 }

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import { Text, View, TextInput, TouchableOpacity } from 'react-native'
-import { gStyle } from './style'
+import { Text } from 'react-native'
 import { FirebaseUtil } from '../../utils'
+import { Container, StyledTextInput, StyledButton, StyledText } from './style'
 
 export default function LoginScreen() {
     const [email, setEmail] = useState<string>('')
@@ -34,39 +34,39 @@ export default function LoginScreen() {
     }
 
     return (
-        <View style={gStyle.container}>
-            <TextInput
+        <Container>
+            <StyledTextInput
                 placeholder="Email"
                 onChangeText={setEmail}
                 value={email}
-                style={gStyle.textInput} />
-            <TextInput
+            />
+            <StyledTextInput
                 placeholder="Password"
                 onChangeText={setPassword}
                 value={password}
-                style={gStyle.textInput}
-                secureTextEntry={true} />
+                secureTextEntry={true}
+            />
             { create ? (
                 <>
-                    <TextInput
+                    <StyledTextInput
                         placeholder="Repeat Password"
                         onChangeText={setRepeatPassword}
                         value={repeatPassword}
-                        style={gStyle.textInput}
-                        secureTextEntry={true} />
-                    <TouchableOpacity onPress={signUp} style={gStyle.button}>
+                        secureTextEntry={true}
+                    />
+                    <StyledButton onPress={signUp}>
                         <Text>Sign up</Text>
-                    </TouchableOpacity>
-                    <Text style={gStyle.text} onPress={() => setCreate(false)}>Sign in</Text>
+                    </StyledButton>
+                    <StyledButton onPress={() => setCreate(false)}>Sign in</StyledButton>
                 </>
             ) : (
                 <>
-                    <TouchableOpacity onPress={signIn} style={gStyle.button}>
+                    <StyledButton onPress={signIn}>
                         <Text>Sign in</Text>
-                    </TouchableOpacity>
-                    <Text style={gStyle.text} onPress={() => setCreate(true)}>Create an Account</Text>
+                    </StyledButton>
+                    <StyledText onPress={() => setCreate(true)}>Create an Account</StyledText>
                 </>
             ) }
-        </View>
+        </Container>
     )
 }

@@ -1,4 +1,4 @@
-import { call, put, takeEvery } from 'redux-saga/effects'
+import { call, put, takeEvery, all } from 'redux-saga/effects'
 import { requestedWeatherFailed, requestedWeatherSucceeded, requestedWeather } from '../../index'
 import axios from 'axios'
 import { Data, Options } from './type'
@@ -25,20 +25,14 @@ function* watcherSaga() {
 
 function* workerSaga() {
     try {
-        const data1: Data = yield call(() => {
-                return axios.request(makeOptions(cities[0])).then((res) => {return res.data})
-            }
-        )
-        const data2: Data = yield call(() => {
-                return axios.request(makeOptions(cities[1])).then((res) => {return res.data})
-            }
-        )
-        const data3: Data = yield call(() => {
-                return axios.request(makeOptions(cities[2])).then((res) => {return res.data})
-            }
-        )
-
-        const data: Data[] = [data1, data2, data3]
+        const data: Data[] = yield all([
+            call(() => axios.request(makeOptions(cities[0])).then((res) => res.data)
+            ),
+            call(() => axios.request(makeOptions(cities[1])).then((res) => res.data)
+            ),
+            call(() => axios.request(makeOptions(cities[2])).then((res) => res.data)
+            )
+        ])
         yield put(requestedWeatherSucceeded(data))
     } catch (error) {
         yield put(requestedWeatherFailed())

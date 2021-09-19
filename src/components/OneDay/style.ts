@@ -1,20 +1,17 @@
-import { StyleSheet } from 'react-native'
+import styled from 'styled-components/native'
 
-export const gStyle = StyleSheet.create<Styles>({
-    dayOfWeek: {
-        flex: 1,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        marginTop: 10,
-        marginLeft: 5,
-        marginRight: 5,
-        marginBottom: 10
-    },
-    image: {
-        width: 40,
-        height: 40
-    },
-    dayText: {
-        fontSize: 20
-    }
-})
+export const DayOfWeek = styled.View`
+  flex: 1;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 10px;
+`
+
+export const DayText = styled.Text`
+  font-size: 20px;
+`
+
+export const StyledImage = styled.Image`
+  width: 40px;
+  height: 40px;
+`

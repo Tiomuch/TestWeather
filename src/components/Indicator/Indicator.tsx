@@ -1,13 +1,13 @@
 import React from 'react'
 import {View, Animated, Dimensions} from 'react-native'
 import {ScrollX} from './type'
-import {gStyle} from './style'
+import {gStyle, IndicatorContainer} from './style'
 
 const { width } = Dimensions.get('screen')
 
 export const Indicator: React.FC<ScrollX> = ({scrollX, weather}) => {
     return (
-        <View style={gStyle.indicatorContainer}>
+        <IndicatorContainer>
             {weather.map((_, index) => {
                 const inputRange = [(index - 1) * width, index * width, (index + 1) * width]
 
@@ -37,6 +37,6 @@ export const Indicator: React.FC<ScrollX> = ({scrollX, weather}) => {
                     />
                 )
             })}
-        </View>
+        </IndicatorContainer>
     )
 }
